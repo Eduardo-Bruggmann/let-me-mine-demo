@@ -1,0 +1,28 @@
+{
+  "name": "let-me-mine",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "pnpm exec tailwindcss -i ./src/input.css -o ./public/styles.css --minify",
+    "tw:dev": "pnpm exec tailwindcss -i ./src/input.css -o ./public/styles.css --watch",
+    "server": "nodemon index.js",
+    "dev": "node ./scripts/dev.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.26.2",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.1",
+    "autoprefixer": "^10.4.21",
+    "nodemon": "2.0.22",
+    "postcss": "^8.5.6",
+    "tailwindcss": "4.2.1"
+  }
+}

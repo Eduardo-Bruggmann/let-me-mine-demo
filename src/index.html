@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Let Me Mine</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="miner.js"></script>
+  </head>
+
+  <body>
+    <div class="page-shell">
+      <header class="page-header">
+        <div class="rainbow-title">
+          <span class="title-letter" style="color: #ff4c4c">L</span>
+          <span class="title-letter" style="color: #ff9f1c">E</span>
+          <span class="title-letter" style="color: #ffd60a">T</span>
+          <span class="title-letter title-gap" style="color: #2ec4b6">M</span>
+          <span class="title-letter" style="color: #3a86ff">E</span>
+          <span class="title-letter title-gap" style="color: #8338ec">M</span>
+          <span class="title-letter" style="color: #ff006e">I</span>
+          <span class="title-letter" style="color: #06d6a0">N</span>
+          <span class="title-letter" style="color: #ffbe0b">E</span>
+        </div>
+      </header>
+
+      <main class="app-grid">
+        <section class="glass-card">
+          <h2 class="section-title">Mining Settings</h2>
+
+          <div class="form-group">
+            <div class="form-label-row">
+              <label for="threads">Threads</label>
+              <span id="threads-range" class="label-helper"
+                >1 - 1 available</span
+              >
+            </div>
+            <input
+              id="threads"
+              class="input-surface"
+              type="number"
+              value="4"
+              min="1"
+              max="8"
+            />
+          </div>
+
+          <div class="form-group">
+            <div class="form-label-row">
+              <label for="cpu">CPU Usage</label>
+              <span id="cpu-value" class="label-helper">60%</span>
+            </div>
+            <input
+              id="cpu"
+              class="cpu-slider"
+              type="range"
+              value="60"
+              min="10"
+              max="100"
+              step="1"
+            />
+          </div>
+
+          <div class="form-group">
+            <div class="form-label-row">
+              <label for="difficulty">Algorithm Difficulty Level</label>
+              <span id="difficulty-helper" class="label-helper"
+                >Accepted range 1 - 10</span
+              >
+            </div>
+            <input
+              id="difficulty"
+              class="input-surface"
+              type="number"
+              value="3"
+              min="1"
+              max="10"
+            />
+          </div>
+
+          <div class="mt-[14px] flex gap-[10px]">
+            <button id="start-btn" class="btn-start" type="button">
+              Start
+            </button>
+            <button id="stop-btn" class="btn-stop" type="button">Stop</button>
+          </div>
+        </section>
+
+        <section class="glass-card">
+          <h2 class="section-title">Mining Status</h2>
+
+          <div class="stat">
+            <div class="stat-label">Shares Found</div>
+            <div class="stat-value" id="shares-found">0</div>
+            <div class="stat-meta" id="shares-meta">
+              0 accepted shares in this session
+            </div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-label">Last Share</div>
+            <div class="stat-value" id="lastShareTime">--:--:--</div>
+            <div class="stat-meta" id="runtime-meta">Session idle</div>
+          </div>
+
+          <div class="stat mb-0">
+            <div class="stat-label">Estimated Earnings</div>
+            <div class="stat-value" id="earnings">0.000000000 XMR</div>
+            <div class="stat-meta" id="earnings-meta">
+              Projected 24h: 0.000000000 XMR
+            </div>
+          </div>
+        </section>
+
+        <section class="glass-card graph-card">
+          <div class="stat mb-0">
+            <div class="stat-label">Hashrate</div>
+            <div class="stat-value" id="hashrate">0 H/s</div>
+            <div class="stat-meta" id="hashrate-meta">
+              Waiting for mining session to start
+            </div>
+          </div>
+
+          <div class="graph-box">
+            <div id="graph-empty" class="graph-empty">
+              Hashrate history will appear here once mining starts
+            </div>
+
+            <svg
+              class="chart-svg"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient id="hashrate-fill" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="rgba(0,229,168,0.40)"></stop>
+                  <stop offset="100%" stop-color="rgba(0,229,168,0)"></stop>
+                </linearGradient>
+              </defs>
+              <polygon
+                id="hashrate-area"
+                fill="url(#hashrate-fill)"
+                points="0,100 0,80 100,35 100,100"
+              ></polygon>
+              <polyline
+                id="hashrate-line"
+                fill="none"
+                stroke="#00e5a8"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                points="0,80 10,75 20,70 30,72 40,60 50,65 60,55 70,60 80,45 90,40 100,35"
+              ></polyline>
+            </svg>
+          </div>
+        </section>
+      </main>
+
+      <footer class="page-footer">
+        All rights reserved © Let Me Mine 2026
+      </footer>
+    </div>
+
+    <div id="agreement-overlay" class="overlay-shell hidden">
+      <div class="modal-shell">
+        <h3 class="mb-[10px] text-lg font-semibold">
+          Resource Usage Agreement
+        </h3>
+
+        <p class="mb-5 text-[14px] leading-[1.5] text-white/85">
+          By continuing, you agree to allow this application to use your
+          computational resources for a local mining simulation. CPU throttling
+          and thread limits will be respected according to the settings
+          configured on this page.
+        </p>
+
+        <div class="modal-actions">
+          <button id="cancel-agreement" class="modal-btn-cancel" type="button">
+            Cancel
+          </button>
+          <button id="agree-agreement" class="modal-btn-agree" type="button">
+            I Agree
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
