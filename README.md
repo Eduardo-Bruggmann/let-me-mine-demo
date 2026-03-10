@@ -14,7 +14,7 @@ Browser-based mining simulation using WebAssembly and Web Workers. The interface
 ## Tech Stack
 
 - **Frontend** — HTML, Tailwind CSS v4, vanilla JS
-- **Backend** — Express 5 (static file server)
+- **Servidor** — Vite (dev server + preview)
 - **Mining engine** — Rust → WebAssembly (`wasm_miner`), Web Workers
 
 ## Getting Started
@@ -23,11 +23,8 @@ Browser-based mining simulation using WebAssembly and Web Workers. The interface
 # Install dependencies
 pnpm install
 
-# Build CSS
-pnpm run build
-
-# Start the server
-pnpm start
+# Start in development
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
@@ -38,20 +35,25 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 pnpm dev
 ```
 
-Starts the Tailwind watcher and nodemon server in parallel.
+Starts a minimal Vite server for the vanilla JS app.
+
+### Production preview
+
+```bash
+pnpm build
+pnpm preview
+```
 
 ## Project Structure
 
 ```
-index.js              Express server
+vite.config.js        Vite configuration
 src/
   index.html          Main page
   input.css           Tailwind source stylesheet
   miner.js            Mining controller (UI, workers, metrics)
   worker.js           Web Worker (WASM hashing loop)
   wasm_miner/pkg/     Compiled WebAssembly module
-public/
-  styles.css          Generated CSS (build output)
 ```
 
 ## License
