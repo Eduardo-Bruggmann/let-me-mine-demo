@@ -47,9 +47,9 @@ pnpm preview
 ## Project Structure
 
 ```
+index.html            Root entrypoint
 vite.config.js        Vite configuration
 src/
-  index.html          Main page
   input.css           Tailwind source stylesheet
   miner.js            Mining controller (UI, workers, metrics)
   worker.js           Web Worker (WASM hashing loop)
