@@ -47,6 +47,7 @@ pnpm preview
 ## Project Structure
 
 ```
+index.js              Runtime entrypoint for deploy
 index.html            Root entrypoint
 vite.config.js        Vite configuration
 src/
